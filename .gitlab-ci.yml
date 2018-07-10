@@ -7,6 +7,7 @@ before_script:
   - apt-get update -qy
   - apt-get install -y git-core
   - git clone https://gitlab.com/ediethelm/trivial-utilities.git ~/quicklisp/local-projects/
+  - git clone https://gitlab.com/ediethelm/trivial-object-lock.git ~/quicklisp/local-projects/
   - cp -r /builds/ediethelm/trivial-pooled-database ~/quicklisp/local-projects/
 
 build:
