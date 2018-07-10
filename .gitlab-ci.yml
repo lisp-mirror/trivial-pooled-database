@@ -6,6 +6,7 @@ stages:
 before_script:
   - apt-get update -qy
   - apt-get install -y git-core
+  - git clone https://github.com/sionescu/bordeaux-threads.git ~/quicklisp/local-projects/bordeaux-threads
   - git clone https://gitlab.com/ediethelm/trivial-utilities.git ~/quicklisp/local-projects/trivial-utilities
   - git clone https://gitlab.com/ediethelm/trivial-object-lock.git ~/quicklisp/local-projects/trivial-object-lock
   - cp -r /builds/ediethelm/trivial-pooled-database ~/quicklisp/local-projects/
