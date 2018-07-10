@@ -22,6 +22,14 @@ After the files are copied, we can use [QuickLisp](https://www.quicklisp.org/bet
 ```
 
 
+**Note:** trivial-pooled-database depends on features from bordeaux-threads which are not yes available in [QuickLisp](https://www.quicklisp.org/beta/ "QuickLisp").  
+Because of this, following step is necessary before loading trivial-pooled-database:
+```bash
+cd $HOME/quicklisp/local-projects
+git clone https://github.com/sionescu/bordeaux-threads.git
+```
+
+
 ## Exported Symbols
 
 - [function] INITIALIZE-CONNECTION-POOL USER PWD SCHEMA HOST &KEY (INITIAL-POOL-SIZE 5) (MAX-POOL-SIZE 15)
