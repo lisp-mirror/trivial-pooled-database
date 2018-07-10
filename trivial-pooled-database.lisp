@@ -34,6 +34,13 @@
 
 @export
 (defun initialize-connection-pool (user pwd schema host &key (initial-pool-size 5) (max-pool-size 15))
+  "Initialize the connection pool by providing access credentials to the database and additionaly pool size information.
+USER - user name
+PWD - user password
+SCHEMA - database schema to use
+HOST - database host name or IP address
+INITIAL-POOL-SIZE - the number of connections to be created at initialization
+MAX-POOL-SIZE - Maximal number of connections allowed "
   (declare (type trivial-utilities:positive-fixnum initial-pool-size max-pool-size)
 	   (type (simple-array dbi-pooled-connection *) *connection-pool*))
 
@@ -71,12 +78,13 @@
 
 @export
 (defun shutdown-connection-pool ()
-  "Disconnects all DBI connections and shuts down the pool."
-  )
+  "Disconnects all database connections and shuts down the connection pool."
+  ;; @TODO Implementation needed.
+  (error "Not implemented yet."))
 
 @export
 (defmacro with-connection ((connection) &body body)
-  ""
+  "Allows for safe acquisition and release of a pooled connection. In BODY a connection named be the symbol CONNECTION can be used."
   `(let ((,connection (acquire-connection)))
      (unwind-protect
 	  (progn
@@ -150,17 +158,18 @@
     (warn "Connection could not be established!")))
 
 @export
-(defun execute (sql)
-  (log:trace "SQL command: '~a'." sql)
+(defun execute (cmd)
+  "Allows for execution of a freely defined SQL command CMD."
+  (log:trace "SQL command: '~a'." cmd)
 
   (with-connection (connection)
     (dbi:fetch-all
      (dbi:execute
-      (dbi:prepare (dbi-connection connection) sql)))))
+      (dbi:prepare (dbi-connection connection) cmd)))))
 
 @export
 (defun execute-function (fn-name &rest parameters)
-  "Executes a DB stored function and returns it's value."
+  "Executes a DB stored function identified by FN-NAME with the given PARAMETERS (if any) and returns it's value."
 
   (let ((cmd
 	 ;;---------------------------------------- !! REVIEW !! ----------------------------------------
@@ -180,6 +189,7 @@
 
 @export
 (defun select (table fields where &key (limit nil) (order-by nil))
+  "Selects all entries from TABLE mathing the WHERE clause returning the FIELDS (might be '*' to select all fields of the table). Optionally LIMIT indicates the maximum number of entries to return and ORDER-BY defines the ordering of the result."
   (let ((cmd
 	 ;;---------------------------------------- !! REVIEW !! ----------------------------------------
 	 (format nil "SELECT ~{`~a`~^, ~} FROM `~a` ~a~a ~a~a ~a~a"
@@ -201,6 +211,7 @@
 
 @export
 (defun insert (table fields values)
+  "Inserts a new entry into the database TABLE assigning each element in VALUES to its corresponding FIELD."
   (let ((cmd
 	 ;;---------------------------------------- !! REVIEW !! ----------------------------------------
 	 (format nil "INSERT INTO `~a` (~{`~a`~^, ~}) VALUES (~{~a~^, ~})"
@@ -218,6 +229,7 @@
 
 @export
 (defun update (table fields values where)
+  "Updates an entry of the table TABLE matching the WHERE clause. Each element in VALUES is assigned to its corresponding FIELD."
   (let ((cmd
 	 ;;---------------------------------------- !! REVIEW !! ----------------------------------------
 	 (format nil "UPDATE `~a` SET (~{`~a`~^, ~}) VALUES (~{~a~^, ~}) WHERE ~a"
