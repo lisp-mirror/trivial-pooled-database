@@ -23,7 +23,7 @@ Issue reports must contain at least the following information:
 1. Fork this repository
 2. Create a topic branch on which you make your changes
 3. Commit your changes. Good commit messagse describing your change are mandatory (it has to be clear, easy to follow and written in complete sentences)
-4. Open a Pull Request with a good title and a clear description (again, it has to be clear, easy to follow and written in complete sentences)
+4. Open a [Merge Request](https://gitlab.com/ediethelm/trivial-polled-database/merge_requests/new "New Merge Request") with a good title and a clear description (again, it has to be clear, easy to follow and written in complete sentences)
 
 
 Thank you for your contribution!
