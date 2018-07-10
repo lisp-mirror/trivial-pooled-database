@@ -7,6 +7,17 @@ Although I now develop for many years with Common Lisp, I'm still learning - and
 If you open a Pull Request, others will also benefit from your work.
 
 
+## Reporting Bugs
+
+Bugs don't like to be ignored! Should you find a bug, please report it using the [New Issue] (https://gitlab.com/ediethelm/trivial-pooled-database/issues/new "Report a new issue") functionality.
+
+Issue reports must contain at least the following information:
+1. A description of your use-case good enough to reproduce the issue
+2. Some minimal code and the backtrace with your error
+3. The name and version of your Lisp
+4. The name and version of your Operating System
+
+
 ## Steps to Contribute
 
 1. Fork this repository
