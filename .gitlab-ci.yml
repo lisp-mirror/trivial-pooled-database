@@ -11,7 +11,16 @@ before_script:
   - git clone https://gitlab.com/ediethelm/trivial-object-lock.git ~/quicklisp/local-projects/trivial-object-lock
   - cp -r /builds/ediethelm/trivial-pooled-database ~/quicklisp/local-projects/
 
-build:
+sbcl-build:
   stage: build
   script:
     - sbcl --non-interactive --eval "(ql:quickload :trivial-pooled-database)"
+
+
+ccl-build:
+  stage: build
+  script:
+    - ccl --eval "(let ((*debugger-hook* (lambda (c m)
+                                           (declare (ignore c m))
+                                           (uiop:quit 1))))
+                    (ql:quickload :trivial-pooled-database))"
