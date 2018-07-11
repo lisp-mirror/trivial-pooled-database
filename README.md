@@ -1,5 +1,7 @@
 # Trivial Pooled Database Manual
 
+[![pipeline status](https://gitlab.com/ediethelm/trivial-pooled-database/badges/master/pipeline.svg)](https://gitlab.com/ediethelm/trivial-pooled-database/commits/master)
+
 ###### \[in package TRIVIAL-POOLED-DATABASE\]
 ## Description
 
@@ -28,25 +30,51 @@ Once the pool is initialized, a SQL command can be executed and all connection h
 ```
 
 
+## Installing trivial-pooled-database
+
+Since this project is not yet available in the latest [QuickLisp](https://www.quicklisp.org/beta/ "QuickLisp") distribution, it has to be copied to your local-projects folder:
+```bash
+cd $HOME/quicklisp/local-projects
+git clone https://gitlab.com/ediethelm/trivial-pooled-database.git
+```
+
+After the files are copied, we can use [QuickLisp](https://www.quicklisp.org/beta/ "QuickLisp") to load trivial-pooled-database:
+```lisp
+(ql:quickload :trivial-pooled-database)
+```
+
+
+**Note:** trivial-pooled-database depends on features from bordeaux-threads which are not yes available in [QuickLisp](https://www.quicklisp.org/beta/ "QuickLisp").  
+Because of this, following step is necessary before loading trivial-pooled-database:
+```bash
+cd $HOME/quicklisp/local-projects
+git clone https://github.com/sionescu/bordeaux-threads.git
+```
+
+
 ## Exported Symbols
 
 - [function] INITIALIZE-CONNECTION-POOL USER PWD SCHEMA HOST &KEY (INITIAL-POOL-SIZE 5) (MAX-POOL-SIZE 15)
-
     Initialize the connection pool by providing access credentials to the database and additionaly pool size information.
     *USER* - user name
     *PWD* - user password
     *SCHEMA* - database schema to use
     *HOST* - database host name or IP address
     *INITIAL-POOL-SIZE* - the number of connections to be created at initialization
-    *MAX-POOL-SIZE* - Maximal number of connections allowed 
+    *MAX-POOL-SIZE* - Maximal number of connections allowed
 
 - [function] SHUTDOWN-CONNECTION-POOL 
-
     Disconnects all database connections and shuts down the connection pool.
 
 - [function] SELECT TABLE FIELDS WHERE &KEY (LIMIT NIL) (ORDER-BY NIL)
 
-    Selects all entries from *TABLE* matching the *WHERE* clause returning the *FIELDS* (might be '\*' to select all fields of the table). Optionally *LIMIT* indicates the maximum number of entries to return and *ORDER-BY* defines the ordering of the result.
+    Selects all entries from *TABLE* matching the *WHERE* clause returning the *FIELDS* (might be '\*' to select all fields of the table).  
+	Optionally *LIMIT* indicates the maximum number of entries to return and *ORDER-BY* defines the ordering of the result.
+
+- [function] SELECT TABLE FIELDS WHERE &KEY (LIMIT NIL) (ORDER-BY NIL)
+
+    Selects all entries from *TABLE* matching the *WHERE* clause returning the *FIELDS* (might be '\*' to select all fields of the table).  
+    Optionally *LIMIT* indicates the maximum number of entries to return and *ORDER-BY* defines the ordering of the result.
 
 - [function] INSERT TABLE FIELDS VALUES
 
