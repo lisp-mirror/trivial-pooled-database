@@ -33,6 +33,13 @@
 		   :accessor owner-thread))))
 
 @export
+(defun initialized-p ()
+  (not (or (string= *username* "")
+	   (string= *password* "")
+	   (string= *schema* "")
+	   (string= *host* ""))))
+   
+@export
 (defun initialize-connection-pool (user pwd schema host &key (initial-pool-size 5) (max-pool-size 15))
   "Initialize the connection pool by providing access credentials to the database and additionaly pool size information.
 *USER* - user name
