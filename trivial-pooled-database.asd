@@ -13,8 +13,7 @@
 	       :iterate
 	       :cl-dbi
 	       :parse-number
-	       :mgl-pax
-	       :cl-annot)
+	       :mgl-pax)
   :components ((:file "package")
 	       (:file "trivial-pooled-database")
 	       (:file "documentation")))
