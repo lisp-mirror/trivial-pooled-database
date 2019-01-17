@@ -38,6 +38,7 @@ Once the pool is initialized, a SQL command can be executed and all connection h
 (defsection @trivial-pooled-database-exported (:title "Exported Symbols")
   (initialize-connection-pool function)
   (shutdown-connection-pool function)
+  (within-transaction macro)
   (select function)
   (insert function)
   (update function)

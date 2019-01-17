@@ -7,5 +7,6 @@
 	   #:execute-function
 	   #:select
 	   #:insert
-	   #:update))
+	   #:update
+	   #:within-transaction))
 

@@ -273,3 +273,10 @@
     (with-connection (connection) (get-connection-pool)
       (dbi:do-sql (dbi-connection connection) cmd))))
 
+
+(defmacro within-transaction (&body body)
+  "Execute all statements in **BODY** within a DB transaction using a single connection.
+NOTE: Does nothing at the moment; implementation missing! "
+  `(progn
+     ,@body))
+
