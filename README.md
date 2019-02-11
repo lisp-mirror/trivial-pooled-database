@@ -1,6 +1,7 @@
 # Trivial Pooled Database Manual
 
 [![pipeline status](https://gitlab.com/ediethelm/trivial-pooled-database/badges/master/pipeline.svg)](https://gitlab.com/ediethelm/trivial-pooled-database/commits/master)
+[![Quicklisp](http://quickdocs.org/badge/trivial-pooled-database.svg)](http://quickdocs.org/trivial-pooled-database/)
 
 ###### \[in package TRIVIAL-POOLED-DATABASE\]
 ## Description
@@ -32,13 +33,8 @@ Once the pool is initialized, a SQL command can be executed and all connection h
 
 ## Installing trivial-pooled-database
 
-Since this project is not yet available in the latest [QuickLisp](https://www.quicklisp.org/beta/ "QuickLisp") distribution, it has to be copied to your local-projects folder:
-```bash
-cd $HOME/quicklisp/local-projects
-git clone https://gitlab.com/ediethelm/trivial-pooled-database.git
-```
+This project is available in the latest [QuickLisp](https://www.quicklisp.org/beta/ "QuickLisp") distribution, so installing it is reduced to calling:
 
-After the files are copied, we can use [QuickLisp](https://www.quicklisp.org/beta/ "QuickLisp") to load trivial-pooled-database:
 ```lisp
 (ql:quickload :trivial-pooled-database)
 ```
